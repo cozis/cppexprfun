@@ -125,5 +125,9 @@ double eval(Expr *e)
 {
     EvalVisitor visitor;
     e->visit(visitor);
-    return visitor.stack[visitor.depth-1];
+    
+    if (visitor.fail)
+        return 0;
+    else
+        return visitor.stack[visitor.depth-1];
 }
